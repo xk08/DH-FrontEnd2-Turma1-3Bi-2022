@@ -1,1 +1,0 @@
-/* A jornada começa aqui... */
