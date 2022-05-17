@@ -12,6 +12,7 @@ console.log(numeros);
 for (let i = 0; i < numeros.length; i++) {
     somaTotalNumeros = somaTotalNumeros + numeros[i];
     //somaTotalNumeros += numeros[i]; //Outra maneira de somar
+    console.log(somaTotalNumeros);
 }
 
 console.log("A soma toda dos números foi: " + somaTotalNumeros);
