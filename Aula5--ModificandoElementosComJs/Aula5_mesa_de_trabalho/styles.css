@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 * {
   margin: 0;
   padding: 0;
@@ -48,29 +49,52 @@ h1 {
 /* ------------------------------ Estilos para o tema escuro (Dark-Mode) ----------------------------------------------- */
 
 /* Os seguintes estilos são os que usaremos para aplicar o modo escuro, 
-você terá que modificar os seletores a fim de poder resolver o exercício. /* 
+você terá que modificar os seletores a fim de poder resolver o exercício. */ 
 
-// A cor de fundo 
-{
+/* A cor de fundo */
+.darkBody{
   background-color: rgb(39, 39, 39);
 }
 
-// Modificações no titulo 'A família dos felinos'
-{ 
+/*// Modificações no titulo 'A família dos felinos' */
+.darkTitle{ 
   background-color: rgb(19, 19, 19);
   color: rgb(170, 170, 170);
   border-color: black;
 }
 
 
-// Modificações nos items
-{
+/*// Modificações nos items */
+.darkItem{
   background-color: rgb(19, 19, 19);
   border-color: black;
 }
 
-// Modificações nos textos dos itens e cabeçalhos dos itens
-{
+/*// Modificações nos textos dos itens e cabeçalhos dos itens */
+.darkItemText{
   color: rgb(230, 230, 230);
 }
-*/
+
+
+/* classe para o botão */
+.toggleButton{
+  font-family: 'Anonymous Pro';
+  font-size: 14px;
+  width: 120px;
+  height: 40px;
+  position: absolute;
+  top: 15px;
+  right: 60px;
+  border-radius: 5px;
+  color: #fff;
+  background-color: #000;
+}
+
+/* classe para o botão modo dark */
+
+.darkToggleButton{
+  color: #000;
+  background-color: #fff;
+  font-weight: 700;
+  font-style: italic;
+}
