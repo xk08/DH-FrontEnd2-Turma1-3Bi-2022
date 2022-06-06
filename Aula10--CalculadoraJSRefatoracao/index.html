@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/styles.css">
+    <title>Aula 10</title>
+</head>
+
+<body>
+    <h1>Aula 10 - Calculadora em JS</h1>
+
+    <div id="elementoPai" class="container">
+
+        <form>
+            <div class="item">
+                <label for="numero1">Número 1</label>
+                <br>
+                <input id="numero1" type="text" required>
+                <br>
+                <label for="numero2">Número 2</label>
+                <br>
+                <input id="numero2" type="text" required>
+                <br>
+                <br>
+                <button id="limpar">Limpar</button>
+            </div>
+
+
+            <div class="item">
+                <label for="resultado">Resultado operação</label>
+                <br>
+                <p id="resultadoOperacao">0</p>
+            </div>
+
+            <div class="item">
+                <label for="resultado">Operações disponíveis</label>
+                <br>
+                <br>
+                <button id="botaoSomar">Somar (+)</button>
+                <button id="botaoSubtrair">Subtrair (-)</button>
+                <button id="botaoMultiplicar">Multiplicar(*)</button>
+                <button id="botaoDividir">Dividir (/)</button>
+            </div>
+
+            <div class="item">
+                <label for="resultado">Operações realizadas (LOG)</label>
+                <br>
+                <div id="operacoesRealizadas">
+                   <!--  <p class="p-log">4 + 4 = 8</p>
+                    <p class="p-log">10 - 5 = 5</p> -->
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <script src="scripts/calculadora.js" type="module"></script>
+</body>
+
+</html>
