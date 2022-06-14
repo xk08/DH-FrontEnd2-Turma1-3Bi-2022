@@ -26,6 +26,20 @@ let emailFormularioOk = false;
  botaoSalvar.setAttribute("disabled", true);
  botaoSalvar.style.backgroundColor = "#908E8E"
 
+ //Cria um objeto com informações em branco
+ let objetoUsuario = {
+    nome: "",
+    sobrenome: "",
+    email: "",
+    altura: ""
+ }
+
+ //Executa automaticamente ao carregar a página
+ onload = () => {
+    //Chama a função automaticamente
+    alteraDadosNaPagina();
+ }
+
 //adiciona um evento ao botão de "salvar"
 botaoSalvar.addEventListener("click", function (evento) {
 
@@ -102,12 +116,26 @@ function normalizandoDadosDoUsuario(nomeSobrenomeRecebido) {
     console.log(nomeSeparado);
     console.log(nomeSeparado[0]);
 
+    /* Salvando as informações do usuário, no objeto */
+    objetoUsuario.nome = nomeSeparado[0];
+    objetoUsuario.sobrenome = nomeSeparado[1];
+    objetoUsuario.altura = altura.value;
+    objetoUsuario.email = email.value; 
+
+    console.log(objetoUsuario);
+
+    //Converte o objeto JS para JSON(textual)
+    let objetoUsuarioConvertidoJson = JSON.stringify(objetoUsuario);
+
+    //Salva o objeto convertido no LocalStorage
+    localStorage.setItem("1", objetoUsuarioConvertidoJson)
+
     //@@ Alterando o valor fixo do HTML
     //Invoca/chama a função que realiza a alteração
-    alteraDadosNaPagina(nomeSeparado);
+    alteraDadosNaPagina();
 }
 
-function alteraDadosNaPagina(nomeCompletoRecebido) {
+function alteraDadosNaPagina() {
 
     //Capturandos os elementos HTML que serão alterados pelo js
     let nomeUsuario = document.getElementById("nomeUsuario");
@@ -115,16 +143,22 @@ function alteraDadosNaPagina(nomeCompletoRecebido) {
     let alturaUsuario = document.getElementById("alturaUsuario");
     let emailUsuario = document.getElementById("emailUsuario");
 
+    //Busca as informações salvas no LocalStorage
+    let objetoRecebidoStorage = localStorage.getItem("1");
+
+    //Converte de JSON(Textual) para objeto JS
+    let objetoRecebidoStorageConvertido = JSON.parse(objetoRecebidoStorage);
+
     //Alterando o nome e sobrenome
-    nomeUsuario.innerText = nomeCompletoRecebido[0];
-    sobrenomeUsuario.innerText = nomeCompletoRecebido[1];
+    nomeUsuario.innerText = objetoRecebidoStorageConvertido.nome;
+    sobrenomeUsuario.innerText = objetoRecebidoStorageConvertido.sobrenome;
 
     //Altera a biografia
-    emailUsuario.innerText = email.value;
+    emailUsuario.innerText = objetoRecebidoStorageConvertido.email;
 
     //Altera a altura fazendo uma conversão
-    alturaUsuario.innerText = altura.value; //Sem alterar
-    alturaUsuario.innerText = modificaAltura(altura.value); //Usando a função que converte
+    //alturaUsuario.innerText = altura.value; //Sem alterar
+    alturaUsuario.innerText = modificaAltura(objetoRecebidoStorageConvertido.altura); //Usando a função que converte
 
     //Verificando os termos de uso
 
