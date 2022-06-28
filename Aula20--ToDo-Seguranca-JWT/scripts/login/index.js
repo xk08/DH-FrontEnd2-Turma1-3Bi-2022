@@ -89,8 +89,54 @@ botaoAcessarLogin.addEventListener("click", function (evento) {
 
 });
 
+/* ASYNC/AWAIT -> Outra forma de consumir a API */
+/* Precisa-se definir a função como ASSINCRONA, usando o "async" */
+async function loginApi() {
+
+    /* Cria o arquivo de configuração */
+    let configRequest = {
+        method: "POST", //método HTTP
+        headers: {  //Cabeçalho da requisição
+            "Content-type": "Application/json" //Tipo do conteúdo enviado
+        },
+        body: loginUsuarioJson //Corpo da requisição
+    }
+
+    //Trata possíveis erros na execução 
+    try {
+        //Utiliza o termo "await" para 'resolver' as promisses, e aguardar a resposta da API
+        let resposta = await fetch("https://ctd-todo-api.herokuapp.com/v1/users/login", configRequest);
+
+        if (resposta.status == 201 || resposta.status == 200) {
+            //Também é necessário utilizar o "await" pois essa informação tambem é assincrona
+            let respostaFinal = await resposta.json();
+
+            //Após ter a resposta da API...
+            //Chama a função de sucesso do login
+            loginSucesso(respostaFinal);
+        } else {
+            //Para a execução e direciona para o bloco do "catch"
+            throw resposta;
+        }
+        //Caso ocorra algum erro ou uma exceção seja lançada
+    } catch (erro) {
+        //Verifica os status de "senha incorreta ou email incorreto"
+        if (erro.status == 400 || erro.status == 404) {
+            //Ao obter algum desses status, chama a função erro no login
+            loginErro("Email e/ou senha inválidos");
+        }
+    }
+}
+
 function loginSucesso(resultadoSucesso) {
     console.log(resultadoSucesso);
+
+    //Salvando o token obtido da API
+    sessionStorage.setItem("jwt", resultadoSucesso.jwt);
+
+    //Direciona o usuário para a tela das tarefas
+    location.href = "tarefas.html";
+
 }
 
 function loginErro(resultadoErro) {
